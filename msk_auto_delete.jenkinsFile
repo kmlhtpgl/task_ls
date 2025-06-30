@@ -1,0 +1,70 @@
+properties([
+    pipelineTriggers([
+        cron('0 22 * * *') //Runs at 10:00 pm everyday
+    ])
+])
+
+def lablePrefix
+def account_id
+def giturl
+def aws_region
+def market
+def environment_name
+def service_name
+def business_unit
+
+pipeline {
+    parameters {
+        string(defaultValue: 'module.msk', name: 'target', trim: true)
+    }
+
+    agent {
+        label "AWS-agent-label"
+    }
+
+    options {
+        timeout
+        timestamps()
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator)
+        ansiColor('xterm')
+    }
+
+    environment {
+        NO_PROXY = 
+        AUTH = credentials
+    }
+
+    stages {
+        stage('init'){
+            steps {
+                cleanWs()
+                deleteDir()
+                git branch: 
+            }
+        }
+
+        stage('Destroy MSK Cluster') {
+            steps {
+                script {
+                    market.each { item -> 
+                        try {
+                            sh """
+                            hostname
+                            git config
+                            python3 
+                            """
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+            deleteDir()
+        }
+    }
+}
