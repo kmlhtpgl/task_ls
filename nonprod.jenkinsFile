@@ -1,0 +1,7 @@
+@Library('Library@Master') _
+properties([parameters([string(name: 'branch', defaultValue: 'master')])])
+service_name="management"
+lablePrefix="jenkin-slave-label"
+account_id="xxxxxxxxxxxx"
+giturl="https://gitlab.dx1........."
+runTerraform("service_name": service_name, "lablePrefix": lablePrefix, "account_id": account_id, branch: params.branch, "gitUrl": gitUrl )
